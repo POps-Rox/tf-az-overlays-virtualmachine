@@ -31,12 +31,12 @@ module "mod_virtual_machine" {
   # Please make sure to use gen2 images supported VM sizes if you use gen2 distributions
   # Specify `disable_password_authentication = false` to create random admin password
   # Specify a valid password with `admin_password` argument to use your own password .  
-  os_type                         = "windows"
-  windows_distribution_name       = "windows2019dc"
-  virtual_machine_size            = "Standard_B2s"
-  admin_username                  = "azureadmin"
-  admin_password                  = "P@$$w0rd1234!"
-  instances_count                 = 2 # Number of VM's to be deployed
+  os_type                   = "windows"
+  windows_distribution_name = "windows2019dc"
+  virtual_machine_size      = "Standard_B2s"
+  admin_username            = "azureadmin"
+  admin_password            = "P@$$w0rd1234!"
+  instances_count           = 2 # Number of VM's to be deployed
 
   # The proximity placement group, Availability Set, and assigning a public IP address to VMs are all optional.
   # If you don't wish to utilize these arguments, delete them from the module. 

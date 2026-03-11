@@ -129,8 +129,8 @@ variable "existing_subnet_name" {
 variable "additional_nic_configuration" {
   description = "Additional configurations for a second network interface.  Secondary NIC always has a private IP address."
   type = object({
-    subnet_id                     = string
-    private_ip_address            = string
+    subnet_id          = string
+    private_ip_address = string
   })
   default = null
 }

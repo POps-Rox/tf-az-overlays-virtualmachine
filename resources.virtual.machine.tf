@@ -88,7 +88,7 @@ resource "azurerm_linux_virtual_machine" "linux_vm" {
   admin_password                  = var.disable_password_authentication == false && var.admin_password == null ? element(concat(random_password.passwd.*.result, [""]), 0) : var.admin_password
   disable_password_authentication = var.disable_password_authentication
   network_interface_ids = compact([element(concat(azurerm_network_interface.nic.*.id, [""]), count.index),
-                           var.additional_nic_configuration != null ? element(concat(azurerm_network_interface.secondary_nic.*.id, [""]), count.index) : null])
+  var.additional_nic_configuration != null ? element(concat(azurerm_network_interface.secondary_nic.*.id, [""]), count.index) : null])
   source_image_id              = var.source_image_id != null ? var.source_image_id : null
   provision_vm_agent           = true
   allow_extension_operations   = true

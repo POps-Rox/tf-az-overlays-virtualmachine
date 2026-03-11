@@ -9,7 +9,7 @@ data "azuread_group" "vm_users_group" {
   display_name = "Virtual Machines Users"
 }
  */
- resource "azurerm_resource_group" "linux-network-rg" {
+resource "azurerm_resource_group" "linux-network-rg" {
   name     = "linux-network-rg"
   location = var.location
   tags = {
