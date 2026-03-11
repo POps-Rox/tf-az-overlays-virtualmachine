@@ -54,7 +54,7 @@ provider "azurerm" {
 }
 
 module "mod_virtual_machine" {
-  source  = "azurenoops/overlays-virtual-machine/azurerm"
+  source  = "POps-Rox/tf-az-overlays-virtual-machine/azurerm"
   version = "x.x.x"
 
   # Resource Group, location, VNet and Subnet details
@@ -181,7 +181,7 @@ Before using licensed Marketplace image, you may need to accept legal plan terms
 
 ```terraform
 module "virtual-machine" {
-  source  = "azurenoops/overlays-virtual-machine/azurerm"
+  source  = "POps-Rox/tf-az-overlays-virtual-machine/azurerm"
   version = "x.x.x"
 
 # .... omitted
@@ -221,7 +221,7 @@ By default, network security groups are attached to Network Interface and allow 
 
 ```terraform
 module "virtual-machine" {
-  source  = "azurenoops/overlays-virtual-machine/azurerm"
+  source  = "POps-Rox/tf-az-overlays-virtual-machine/azurerm"
   version = "x.x.x"
 
 # .... omitted
@@ -270,7 +270,7 @@ data "azurerm_network_security_group" "example" {
 }
 
 module "virtual-machine" {
-   source  = "azurenoops/overlays-virtual-machine/azurerm"
+   source  = "POps-Rox/tf-az-overlays-virtual-machine/azurerm"
   version = "x.x.x"
 
 # .... omitted for bravity
@@ -302,7 +302,7 @@ data "azurerm_network_security_group" "example" {
 }
 
 module "virtual-machine" {
-   source  = "azurenoops/overlays-virtual-machine/azurerm"
+   source  = "POps-Rox/tf-az-overlays-virtual-machine/azurerm"
   version = "x.x.x"
 
 # .... omitted for bravity
