@@ -8,25 +8,25 @@
 output "linux_vm_id" {
   description = "Id for the Linux VM, if multiple VM's are created then it will be a list of ids"
   sensitive   = true
-  value       = var.os_type == "linux" ? azurerm_linux_virtual_machine.linux_vm.*.id : null
+  value       = var.os_type == "linux" ? azurerm_linux_virtual_machine.linux_vm[*].id : null
 }
 
 output "windows_vm_id" {
   description = "Id for the Linux VM, if multiple VM's are created then it will be a list of ids"
   sensitive   = true
-  value       = var.os_type == "windows" ? azurerm_windows_virtual_machine.win_vm.*.id : null
+  value       = var.os_type == "windows" ? azurerm_windows_virtual_machine.win_vm[*].id : null
 }
 
 output "linux_vm_name" {
   description = "Name for the Linux VM, if multiple VM's are created then it will be a list of names"
   sensitive   = true
-  value       = var.os_type == "linux" ? azurerm_linux_virtual_machine.linux_vm.*.name : null
+  value       = var.os_type == "linux" ? azurerm_linux_virtual_machine.linux_vm[*].name : null
 }
 
 output "windows_vm_name" {
   description = "Name for the Linux VM, if multiple VM's are created then it will be a list of names"
   sensitive   = true
-  value       = var.os_type == "windows" ? azurerm_windows_virtual_machine.win_vm.*.name : null
+  value       = var.os_type == "windows" ? azurerm_windows_virtual_machine.win_vm[*].name : null
 }
 
 output "admin_ssh_key_public" {
@@ -43,43 +43,43 @@ output "admin_ssh_key_private" {
 output "windows_vm_password" {
   description = "Password for the windows VM"
   sensitive   = true
-  value       = var.admin_password == null ? element(concat(random_password.passwd.*.result, [""]), 0) : var.admin_password
+  value       = var.admin_password == null ? element(concat(random_password.passwd[*].result, [""]), 0) : var.admin_password
 }
 
 output "linux_vm_password" {
   description = "Password for the Linux VM"
   sensitive   = true
-  value       = var.disable_password_authentication == false && var.admin_password == null ? element(concat(random_password.passwd.*.result, [""]), 0) : var.admin_password
+  value       = var.disable_password_authentication == false && var.admin_password == null ? element(concat(random_password.passwd[*].result, [""]), 0) : var.admin_password
 }
 
 output "windows_vm_public_ips" {
   description = "Public IP's map for the all windows Virtual Machines"
-  value       = var.enable_public_ip_address == true && var.os_type == "windows" ? zipmap(azurerm_windows_virtual_machine.win_vm.*.name, azurerm_windows_virtual_machine.win_vm.*.public_ip_addresses) : null
+  value       = var.enable_public_ip_address == true && var.os_type == "windows" ? zipmap(azurerm_windows_virtual_machine.win_vm[*].name, azurerm_windows_virtual_machine.win_vm[*].public_ip_addresses) : null
 }
 
 output "windows_vm_private_ips" {
   description = "Public IP's map for the all windows Virtual Machines"
-  value       = var.os_type == "windows" ? zipmap(azurerm_windows_virtual_machine.win_vm.*.name, azurerm_windows_virtual_machine.win_vm.*.private_ip_addresses) : null
+  value       = var.os_type == "windows" ? zipmap(azurerm_windows_virtual_machine.win_vm[*].name, azurerm_windows_virtual_machine.win_vm[*].private_ip_addresses) : null
 }
 
 output "linux_vm_public_ips" {
   description = "Public IP's map for the all windows Virtual Machines"
-  value       = var.enable_public_ip_address == true && var.os_type == "linux" ? zipmap(azurerm_linux_virtual_machine.linux_vm.*.name, azurerm_linux_virtual_machine.linux_vm.*.public_ip_addresses) : null
+  value       = var.enable_public_ip_address == true && var.os_type == "linux" ? zipmap(azurerm_linux_virtual_machine.linux_vm[*].name, azurerm_linux_virtual_machine.linux_vm[*].public_ip_addresses) : null
 }
 
 output "linux_vm_private_ips" {
   description = "Public IP's map for the all windows Virtual Machines"
-  value       = var.os_type == "linux" ? zipmap(azurerm_linux_virtual_machine.linux_vm.*.name, azurerm_linux_virtual_machine.linux_vm.*.private_ip_addresses) : null
+  value       = var.os_type == "linux" ? zipmap(azurerm_linux_virtual_machine.linux_vm[*].name, azurerm_linux_virtual_machine.linux_vm[*].private_ip_addresses) : null
 }
 
 output "linux_virtual_machine_ids" {
   description = "The resource id's of all Linux Virtual Machine."
-  value       = var.os_type == "linux" ? concat(azurerm_linux_virtual_machine.linux_vm.*.id, [""]) : null
+  value       = var.os_type == "linux" ? concat(azurerm_linux_virtual_machine.linux_vm[*].id, [""]) : null
 }
 
 output "windows_virtual_machine_ids" {
   description = "The resource id's of all Windows Virtual Machine."
-  value       = var.os_type == "windows" ? concat(azurerm_windows_virtual_machine.win_vm.*.id, [""]) : null
+  value       = var.os_type == "windows" ? concat(azurerm_windows_virtual_machine.win_vm[*].id, [""]) : null
 }
 
 output "network_security_group_ids" {
@@ -89,16 +89,16 @@ output "network_security_group_ids" {
 
 output "vm_availability_set_id" {
   description = "The resource ID of Virtual Machine availability set"
-  value       = var.enable_vm_availability_set == true ? element(concat(azurerm_availability_set.aset.*.id, [""]), 0) : null
+  value       = var.enable_vm_availability_set == true ? element(concat(azurerm_availability_set.aset[*].id, [""]), 0) : null
 }
 
 output "linux_vm_identity" {
   description = "Linux Identity block with principal ID"
-  value       = var.os_type == "linux" ? azurerm_linux_virtual_machine.linux_vm.*.identity : null
+  value       = var.os_type == "linux" ? azurerm_linux_virtual_machine.linux_vm[*].identity : null
 }
 
 output "windows_vm_identity" {
   description = "Windows Identity block with principal ID"
-  value       = var.os_type == "windows" ? azurerm_windows_virtual_machine.win_vm.*.identity : null
+  value       = var.os_type == "windows" ? azurerm_windows_virtual_machine.win_vm[*].identity : null
 }
 

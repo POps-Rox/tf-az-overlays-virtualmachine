@@ -3,8 +3,8 @@ locals {
   name_prefix = lower(var.name_prefix)
   name_suffix = lower(var.name_suffix)
 
-  resource_group_name             = element(coalescelist(data.azurerm_resource_group.rgrp.*.name, module.mod_scaffold_rg.*.resource_group_name, [""]), 0)
-  location                        = element(coalescelist(data.azurerm_resource_group.rgrp.*.location, module.mod_scaffold_rg.*.resource_group_location, [""]), 0)
+  resource_group_name             = element(coalescelist(data.azurerm_resource_group.rgrp[*].name, module.mod_scaffold_rg[*].resource_group_name, [""]), 0)
+  location                        = element(coalescelist(data.azurerm_resource_group.rgrp[*].location, module.mod_scaffold_rg[*].resource_group_location, [""]), 0)
   linux_vm_name                   = coalesce(var.custom_linux_vm_name, data.popsrox_resource_name.vm_linux.result)
   windows_vm_name                 = coalesce(var.custom_windows_vm_name, data.popsrox_resource_name.vm_windows.result)
   windows_computer_name           = coalesce(var.custom_computer_name, data.popsrox_resource_name.computer_windows.result)
